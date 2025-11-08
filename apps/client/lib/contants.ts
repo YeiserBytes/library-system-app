@@ -1,4 +1,4 @@
-import { Calendar, Home, BookText, Repeat, Settings } from "lucide-react"
+import { BookText, Calendar, Home, Repeat } from "lucide-react";
 
 export const sideBarItems = [
   {
@@ -26,4 +26,4 @@ export const sideBarItems = [
   //   url: "/dashboard/settings",
   //   icon: Settings,
   // },
-]
+];

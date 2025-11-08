@@ -20,15 +20,15 @@ const cookieConfig = {
 };
 
 export async function getUsernameFromToken(
-  token: string | undefined
+  token: string | undefined,
 ): Promise<string | null> {
   const { username } = await loginUserService({ token: token });
   return username || null;
 }
 
 export async function loginUserAction(
-  prevState: FormState,
-  formData: FormData
+  _prevState: FormState,
+  formData: FormData,
 ): Promise<FormState> {
   const fields = {
     identifier: formData.get("identifier") as string,
@@ -69,8 +69,8 @@ export async function loginUserAction(
 }
 
 export async function registerUserAction(
-  prevState: FormState,
-  formData: FormData
+  _prevState: FormState,
+  formData: FormData,
 ): Promise<FormState> {
   console.log("Hello from Register User Action");
 

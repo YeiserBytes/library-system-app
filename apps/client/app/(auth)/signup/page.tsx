@@ -1,4 +1,3 @@
-
 "use client";
 
 import SignupForm from "@/components/sign-up-form";

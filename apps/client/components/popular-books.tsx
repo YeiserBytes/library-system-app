@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { TrendingUp } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { TrendingUp } from "lucide-react";
 
 const books = [
   {
@@ -27,7 +27,7 @@ const books = [
     loans: 28,
     available: 3,
   },
-]
+];
 
 export function PopularBooks() {
   return (
@@ -46,11 +46,17 @@ export function PopularBooks() {
               className="flex items-start gap-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
             >
               <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <span className="text-sm font-bold text-primary">#{index + 1}</span>
+                <span className="text-sm font-bold text-primary">
+                  #{index + 1}
+                </span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-medium text-sm mb-1 leading-tight">{book.title}</p>
-                <p className="text-xs text-muted-foreground mb-2">{book.author}</p>
+                <p className="font-medium text-sm mb-1 leading-tight">
+                  {book.title}
+                </p>
+                <p className="text-xs text-muted-foreground mb-2">
+                  {book.author}
+                </p>
                 <div className="flex items-center gap-2">
                   <Badge variant="secondary" className="text-xs">
                     {book.loans} préstamos
@@ -58,7 +64,9 @@ export function PopularBooks() {
                   <Badge
                     variant="outline"
                     className={`text-xs ${
-                      book.available > 0 ? "border-chart-5 text-chart-5" : "border-destructive text-destructive"
+                      book.available > 0
+                        ? "border-chart-5 text-chart-5"
+                        : "border-destructive text-destructive"
                     }`}
                   >
                     {book.available} disponibles
@@ -70,5 +78,5 @@ export function PopularBooks() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

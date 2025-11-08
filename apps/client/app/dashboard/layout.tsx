@@ -1,7 +1,7 @@
-'use client'
+"use client";
 // @ts-expect-error TS7016: Could not find module or type declarations for side-effect import of './globals.css'.
 import "../globals.css";
-import Cookies from '@/node_modules/@types/js-cookie';
+import Cookies from "@/node_modules/@types/js-cookie";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ export default function RootLayout({
     logoutUserAction().then(() => {
       router.push("/signin");
     });
-  }
+  };
 
   useEffect(() => {
     const token = Cookies.get("token") || "";

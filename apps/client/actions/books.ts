@@ -1,6 +1,5 @@
 import qs from "qs";
-import { Book, Loan } from "@/lib/types";
-import { cookies } from "next/headers";
+import type { Book, Loan } from "@/lib/types";
 
 const STRAPI_BASE_URL =
   process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "http://localhost:1337";
@@ -12,7 +11,7 @@ const populateBooksQuery = qs.stringify(
   },
   {
     encodeValuesOnly: true,
-  }
+  },
 );
 
 const populateLoansQuery = qs.stringify(
@@ -22,7 +21,7 @@ const populateLoansQuery = qs.stringify(
   },
   {
     encodeValuesOnly: true,
-  }
+  },
 );
 
 export async function getAllBooks({
@@ -36,7 +35,7 @@ export async function getAllBooks({
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 
   const data = (await response.json()) as { data: Book[] };
@@ -55,7 +54,7 @@ export async function getAllLoans({
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 
   const data = (await response.json()) as { data: Loan[] };
@@ -73,7 +72,7 @@ const populateReturnedLoansQuery = qs.stringify(
   },
   {
     encodeValuesOnly: true,
-  }
+  },
 );
 
 export async function getBookReturns({
@@ -87,7 +86,7 @@ export async function getBookReturns({
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 
   const data = (await response.json()) as { data: Loan[] };
@@ -107,7 +106,7 @@ export const getStats = async ({ token }: { token: string }) => {
       (books.map(
         (book) =>
           new Date(book.created_at) <
-          new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+          new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
       ).length /
         books.length) *
       100,
@@ -116,7 +115,7 @@ export const getStats = async ({ token }: { token: string }) => {
       (loans.map(
         (loan) =>
           new Date(loan.created_at) <
-          new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+          new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
       ).length /
         loans.length) *
       100,
@@ -125,7 +124,7 @@ export const getStats = async ({ token }: { token: string }) => {
       (returns.map(
         (loan) =>
           new Date(loan.created_at) <
-          new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+          new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
       ).length /
         returns.length) *
       100,
@@ -135,7 +134,7 @@ export const getStats = async ({ token }: { token: string }) => {
       (books.map(
         (book) =>
           new Date(book.created_at) <
-          new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+          new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
       ).length /
         books.length) *
       100,

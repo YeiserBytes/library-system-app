@@ -4,5 +4,5 @@ export const actions = {
   auth: {
     loginUserAction,
     registerUserAction,
-  }
-}
+  },
+};

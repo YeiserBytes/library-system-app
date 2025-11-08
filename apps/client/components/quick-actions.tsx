@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Plus, BookPlus, UserPlus, FileText } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Plus, BookPlus, UserPlus, FileText } from "lucide-react";
 
 const actions = [
   {
@@ -23,7 +23,7 @@ const actions = [
     icon: FileText,
     color: "bg-muted text-foreground hover:bg-muted/80",
   },
-]
+];
 
 export function QuickActions() {
   return (
@@ -33,7 +33,7 @@ export function QuickActions() {
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-3">
         {actions.map((action) => {
-          const Icon = action.icon
+          const Icon = action.icon;
           return (
             <Button
               key={action.title}
@@ -41,11 +41,13 @@ export function QuickActions() {
               className={`h-auto flex-col gap-2 p-4 ${action.color} border-0`}
             >
               <Icon className="w-5 h-5" />
-              <span className="text-xs font-medium text-center leading-tight">{action.title}</span>
+              <span className="text-xs font-medium text-center leading-tight">
+                {action.title}
+              </span>
             </Button>
-          )
+          );
         })}
       </CardContent>
     </Card>
-  )
+  );
 }

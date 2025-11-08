@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import{actions} from "@/actions/index"
+import { actions } from "@/actions/index";
 
 import {
   CardTitle,
@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useActionState } from "react";
 
-import { type FormState } from "@/validations/auth";
+import type { FormState } from "@/validations/auth";
 import { FormError } from "./form-error";
 
 const styles = {
@@ -39,15 +39,18 @@ const INITIAL_STATE: FormState = {
   strapiErrors: null,
   zodErrors: null,
   data: {
-    password: '',
-    identifier: ''
-  }
-}
+    password: "",
+    identifier: "",
+  },
+};
 
 export default function Signin() {
-  const [formState, formAction] = useActionState(actions.auth.loginUserAction, INITIAL_STATE)
+  const [formState, formAction] = useActionState(
+    actions.auth.loginUserAction,
+    INITIAL_STATE,
+  );
 
-  console.log(formState)
+  console.log(formState);
 
   return (
     <div className={styles.container}>

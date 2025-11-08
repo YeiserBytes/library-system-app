@@ -2,6 +2,6 @@
  * loan controller
  */
 
-import { factories } from '@strapi/strapi'
+import { factories } from "@strapi/strapi";
 
-export default factories.createCoreController('api::loan.loan');
+export default factories.createCoreController("api::loan.loan");
