@@ -138,19 +138,6 @@ npm run format
 npm run test
 ```
 
-## Construcción y despliegue
-
-- Despliegue en Vercel (frontend): configura `NEXT_PUBLIC_API_URL` apuntando al backend desplegado.
-- Despliegue del backend (Strapi): puede desplegarse en Heroku, Railway o un servidor con Docker.
-
-Docker (ejemplo mínimo):
-
-```Dockerfile
-# ...existing Dockerfile setup...
-```
-
-Despliegue recomendado: construir apps por separado y configurar variables de entorno en la plataforma elegida.
-
 ## Testing y calidad
 
 - Mantener linters y formateo activos.
@@ -166,7 +153,6 @@ Despliegue recomendado: construir apps por separado y configurar variables de en
 
 ## Contacto y licencia
 
-- Maintainer: maintainer@example.com
 - Licencia: MIT
 
 ## Recursos
