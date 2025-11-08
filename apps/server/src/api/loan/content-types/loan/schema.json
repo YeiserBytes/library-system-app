@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "loans",
+  "info": {
+    "singularName": "loan",
+    "pluralName": "loans",
+    "displayName": "Loans"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "books": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::book.book"
+    },
+    "limit_date": {
+      "type": "datetime"
+    },
+    "return_date": {
+      "type": "datetime"
+    },
+    "loan_state": {
+      "type": "enumeration",
+      "enum": [
+        "Pendiente",
+        "Devuelto",
+        "Retrasado"
+      ]
+    }
+  }
+}
