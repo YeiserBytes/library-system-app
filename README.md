@@ -1,135 +1,95 @@
-# Turborepo starter
+# Bibliotech
 
-This Turborepo starter is maintained by the Turborepo core team.
+Sistema de gestión de biblioteca que facilita el registro de libros, la gestión de préstamos para estudiantes y docentes, y la visualización de disponibilidad, plazos de entrega y retrasos. Además incorpora roles de acceso diferenciados (estudiante, docente, administrador).
 
-## Using this example
+## Propósito
 
-Run the following command:
+La biblioteca de una institución educativa suele enfrentar dificultades en el control y la trazabilidad de los préstamos: procesos manuales, registros dispersos y falta de visibilidad en tiempo real sobre la disponibilidad del material. Bibliotech ofrece una solución centralizada para:
+- Registrar y catalogar ejemplares.
+- Gestionar préstamos y devoluciones.
+- Priorizar y diferenciar privilegios entre roles (ej. docentes vs. estudiantes).
+- Mostrar tiempos de entrega y alertas por retrasos.
+
+## Características principales
+
+- Registro y búsqueda de libros (ISBN, autor, categoría).
+- Gestión de préstamos y reservas.
+- Control de disponibilidad y estado (disponible, prestado, reservado).
+- Notificaciones de vencimiento y retraso.
+- Roles y permisos (estudiante, docente, administrador).
+- Paneles básicos para usuarios y administración.
+
+## Requisitos
+
+- Node.js (16+ recomendado)
+- npm / yarn / pnpm
+
+## Inicio rápido
+
+Clona el repositorio y arranca el monorepo con Turborepo:
 
 ```sh
-npx create-turbo@latest
-```
+git clone https://github.com/YeiserBytes/library-system-app
+cd ./library-system-app
 
-## What's inside?
+# Instalar dependencias (elige tu gestor)
+npm install
+# o
+pnpm install
+# o
+bun install
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+# Ejecutar en modo desarrollo (turborepo)
 npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+# o si tienes turbo global:
+# turbo dev
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## Estructura del proyecto
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+- apps/
+  - client/      -> Frontend (Next.js)
+  - server/     -> Documentación (Next.js)
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+(Todas las apps y paquetes están escritas en TypeScript.)
 
-### Remote Caching
+## Desarrollo
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+- Ejecuta linters y formateo:
+  - npm run lint
+  - npm run format
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+- Construir todo:
+  - npx turbo build
+  - Para construir un paquete específico: npx turbo build --filter=web
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+- Correr sólo una app en desarrollo:
+  - npx turbo dev --filter=web
 
-```
-cd my-turborepo
+## Caché remoto (opcional)
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+Turborepo admite remote caching (p. ej. con Vercel) para compartir artefactos entre máquinas:
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+```sh
 npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
 npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
 ```
 
-## Useful Links
+## Contribuir
 
-Learn more about the power of Turborepo:
+1. Abre un issue describiendo el cambio o bug.
+2. Crea una rama feature/issue-descripción.
+3. Haz un PR explicando los cambios.
+4. Mantén tests y linters verdes antes de solicitar revisión.
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+<!--
+## Licencia y contacto
+- Licencia: MIT (ajusta según corresponda).
+- Contacto: maintainer@example.com
+-->
+
+## Recursos útiles
+
+- Turborepo: https://turborepo.com/
+- Next.js: https://nextjs.org/
+- TypeScript: https://www.typescriptlang.org/
