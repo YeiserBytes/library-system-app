@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 
 export function proxy(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
+  
 
   if (!token) {
     const loginUrl = new URL("/signin", req.url);

@@ -1,67 +1,99 @@
 type BookState = "Disponible" | "Prestado" | "Reservado" | "Inactivo";
 
-export interface Book {
+interface BaseResponse {
+  data: any[];
+  meta: Meta;
+}
+
+interface BaseItems {
   id: number;
-  cover: Cover;
+  documentId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date;
+}
+
+export interface BooksData extends BaseResponse {
+  data: Book[];
+  meta: Meta;
+}
+
+export interface Book extends BaseItems {
   title: string;
   description: string;
+  code: string;
+  publisher: string;
+  publication_year: number;
+  total_copies: number;
+  available_copies: number;
+  book_status: "available" | "borrowed" | "reserved" | "inactive";
+  location: null;
+  isbn: string;
   author: Author;
-  stock_quantity: number;
-  book_state: BookState;
-  categories: Category[];
-  created_at: string;
-  updated_at: string;
+  cover: Cover;
+  category: Author;
+  loans: Loan[];
+  reservations: any[];
 }
 
-export interface Loan {
-  id: number;
-  limit_date: string;
-  return_date: string;
-  loan_state: LoanState;
-  user: User;
-  books: Book[];
-  created_at: string;
-  updated_at: string;
-}
-
-export interface User {
-  id: number;
-  username: string;
-  email: string;
-}
-
-export type LoanState = "Pendiente" | "Devuelto" | "Retrasado";
-
-export interface Category {
-  id: number;
+export interface Author extends BaseItems {
   name: string;
+  slug?: string;
+  description?: Description[];
 }
 
-export interface Author {
-  id: number;
-  name: string;
+export interface Description {
+  type: string;
+  children: Child[];
 }
 
-export interface Cover {
-  id: number;
+export interface Child {
+  type: Type;
+  text: string;
+  bold?: boolean;
+}
+
+export enum Type {
+  Text = "text",
+}
+
+export interface Cover extends BaseItems {
   name: string;
   alternativeText: string;
   caption: string;
   width: number;
   height: number;
-  format: CoverFormats;
+  formats: Formats;
   hash: string;
-  ext: string;
-  mime: string;
+  ext: EXT;
+  mime: MIME;
   size: number;
   url: string;
+  previewUrl: null;
+  provider: string;
+  provider_metadata: null;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-export interface Format {
+export enum EXT {
+  Jpg = ".jpg",
+  Webp = ".webp",
+}
+
+export interface Formats {
+  thumbnail: Large;
+  small?: Large;
+  medium?: Large;
+  large?: Large;
+}
+
+export interface Large {
   name: string;
   hash: string;
-  ext: string;
-  mime: string;
+  ext: EXT;
+  mime: MIME;
+  path: null;
   width: number;
   height: number;
   size: number;
@@ -69,9 +101,63 @@ export interface Format {
   url: string;
 }
 
-export interface CoverFormats {
-  thumbnail: Format;
-  small: Format;
-  medium: Format;
-  large: Format;
+export enum MIME {
+  ImageJPEG = "image/jpeg",
+  ImageWebp = "image/webp",
+}
+
+export interface Meta {
+  pagination: Pagination;
+}
+
+export interface Pagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
+
+export interface LoanData extends BaseResponse{
+  data: LoanData[];
+}
+
+export interface Loan extends BaseItems {
+  return_date: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date;
+  loan_date: Date;
+  due_date: Date;
+  loan_status: string;
+  notes: null | string;
+  renewal_count: number;
+  condition_at_loan: string;
+  condition_at_return: null | string;
+  user: ApprovedBy | null;
+  book: Book | null;
+  approved_by: ApprovedBy | null;
+}
+
+export interface ApprovedBy {
+  id: number;
+  documentId: string;
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date;
+}
+
+export interface Meta {
+  pagination: Pagination;
+}
+
+export interface Pagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
 }

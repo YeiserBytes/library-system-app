@@ -11,16 +11,23 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
     "name": {
       "type": "string",
       "required": true,
       "unique": true
     },
-    "book": {
+    "description": {
+      "type": "blocks"
+    },
+    "books": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::book.book",
-      "inversedBy": "categories"
+      "mappedBy": "category"
     }
   }
 }

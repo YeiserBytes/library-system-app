@@ -1,4 +1,10 @@
-import { BookText, Calendar, Home, Repeat } from "lucide-react";
+import {
+  BookText,
+  Calendar,
+  Home,
+  Repeat,
+  MessageCircleIcon,
+} from "lucide-react";
 
 export const sideBarItems = [
   {
@@ -12,18 +18,18 @@ export const sideBarItems = [
     icon: BookText,
   },
   {
-    title: "Calendar",
-    url: "/dashboard/calendar",
-    icon: Calendar,
+    title: "Notifications",
+    url: "/dashboard/notifications",
+    icon: MessageCircleIcon,
   },
   {
     title: "Loans",
     url: "/dashboard/loans",
     icon: Repeat,
   },
-  // {
-  //   title: "Settings",
-  //   url: "/dashboard/settings",
-  //   icon: Settings,
-  // },
+  {
+    title: "Calendar",
+    url: "/dashboard/calendar",
+    icon: Calendar,
+  },
 ];

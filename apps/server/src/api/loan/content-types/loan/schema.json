@@ -4,36 +4,84 @@
   "info": {
     "singularName": "loan",
     "pluralName": "loans",
-    "displayName": "Loans"
+    "displayName": "Loan"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+    "loan_date": {
+      "type": "datetime",
+      "required": true
     },
-    "books": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::book.book"
-    },
-    "limit_date": {
-      "type": "datetime"
+    "due_date": {
+      "type": "datetime",
+      "required": true
     },
     "return_date": {
-      "type": "datetime"
+      "type": "datetime",
+      "required": false
     },
-    "loan_state": {
+    "loan_status": {
+      "type": "enumeration",
+      "required": true,
+      "default": "pending",
+      "enum": [
+        "pending",
+        "returned",
+        "overdue",
+        "active"
+      ]
+    },
+    "renewal_count": {
+      "type": "integer",
+      "default": 0
+    },
+    "condition_at_loan": {
       "type": "enumeration",
       "enum": [
-        "Pendiente",
-        "Devuelto",
-        "Retrasado"
+        "excellent",
+        "good",
+        "fair",
+        "poor"
       ]
+    },
+    "condition_at_return": {
+      "type": "enumeration",
+      "enum": [
+        "excellent",
+        "good",
+        "fair",
+        "poor"
+      ]
+    },
+    "notes": {
+      "type": "text"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "loans"
+    },
+    "book": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::book.book",
+      "inversedBy": "loans"
+    },
+    "approved_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "loans_approved"
+    },
+    "notifications": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::notification.notification",
+      "mappedBy": "loan"
     }
   }
 }

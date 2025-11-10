@@ -4,13 +4,55 @@
   "info": {
     "singularName": "book",
     "pluralName": "books",
-    "displayName": "Books"
+    "displayName": "Book"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "books"
+    },
+    "isbn": {
+      "type": "string",
+      "unique": true
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "publication_year": {
+      "type": "integer",
+      "required": false
+    },
+    "total_copies": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "available_copies": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "description": {
+      "type": "richtext",
+      "required": false
+    },
     "cover": {
       "type": "media",
       "multiple": false,
@@ -19,41 +61,35 @@
         "images"
       ]
     },
-    "title": {
+    "location": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": false
     },
-    "description": {
-      "type": "text",
-      "required": true
-    },
-    "author": {
+    "category": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::author.author",
+      "target": "api::category.category",
       "inversedBy": "books"
     },
-    "categories": {
+    "loans": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::category.category",
+      "target": "api::loan.loan",
       "mappedBy": "book"
     },
-    "stock_quantity": {
-      "type": "integer",
-      "required": true,
-      "default": 0,
-      "min": 0
+    "reservations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reservation.reservation",
+      "mappedBy": "book"
     },
-    "book_state": {
+    "book_status": {
       "type": "enumeration",
-      "default": "Disponible",
       "enum": [
-        "Disponible",
-        "Prestado",
-        "Reservado",
-        "Inactivo"
+        "available",
+        "borrowed",
+        "reserved",
+        "inactive"
       ]
     }
   }

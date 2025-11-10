@@ -1,12 +1,27 @@
+import { Plus } from "lucide-react";
+import HeaderPage from "@/components/header-page";
+import { LoanFilters } from "@/components/loan-filters";
+import { LoansTable } from "@/components/loans-table";
+import { Button } from "@/components/ui/button";
+
 export default function LoansPage() {
   return (
-    <section>
-      <header>
-        <h1 className="text-3xl font-bold mb-2">Prestamos</h1>
-        <p className="text-muted-foreground">
-          Explora y gestiona los prestamos disponibles en la biblioteca
-        </p>
-      </header>
-    </section>
+    <div className="min-h-screen bg-background">
+      <main className="container mx-auto px-4 py-8">
+        <div className="flex items-center justify-between mb-8">
+          <HeaderPage
+            title="Gestión de Préstamos"
+            description="Administra préstamos, devoluciones y renovaciones"
+          />
+          <Button size="lg" className="gap-2">
+            <Plus className="h-5 w-5" />
+            Nuevo Préstamo
+          </Button>
+        </div>
+
+        <LoanFilters />
+        <LoansTable />
+      </main>
+    </div>
   );
 }
